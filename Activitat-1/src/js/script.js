@@ -19,8 +19,8 @@ document.getElementById("send").onclick=function (event){
         let longitud = persones.length;
 
         let texto = "<ul>";
-        for (let i = 0; i<lengitud; i++){
-            texto +="<li>" + persones[i] + "<li>";
+        for (let i = 0; i<longitud; i++){
+            texto +="<li>" + persones[i].name +" " + persones[i].surname 
         }
         texto +="</ul>";
 
@@ -66,6 +66,7 @@ function validarForm() {
         document.getElementById('resultat').innerHTML = "SURNAME: només pot contenir lletres"
         return false
     }
+    return true
 }
 
 function testLongitud(name){
@@ -125,16 +126,16 @@ function testMajusculesS(surname){
 }   
 
 function testNomesLletres(name){
-    const letras = /^[A-Za-z]+$/;
-    if (name.value.match(letras)){
+    var letras = /^[A-Za-z]+$/;
+    if (name.match(letras)){
         return true;
     } else {
         return false;
     }
 }
 function testNomesLletresS(surname){
-    const letras = /^[A-Za-z]+$/;
-    if (surname.value.match(letras)){
+    var letras = /^[A-Za-z]+$/;
+    if (surname.match(letras)){
         return true;
     } else {
         return false;
