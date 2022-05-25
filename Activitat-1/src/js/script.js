@@ -13,22 +13,53 @@ document.getElementById("send").onclick=function (event){
             "name": name,
             "surname": surname
         }
-        persones.push(persona);
+        // persones.push(persona);
+
+        // Guardar dins json
+        guardar_persona_en_API(persona)
 
         // printar array a pantalla 
-        let longitud = persones.length;
+        // let longitud = persones.length;
 
-        let texto = "<ul>";
-        for (let i = 0; i<longitud; i++){
-            texto +="<li>" + persones[i].name +" " + persones[i].surname 
-        }
-        texto +="</ul>";
+        // let texto = "<ul>";
+        // for (let i = 0; i<longitud; i++){
+        //     texto +="<li>" + persones[i].name +" " + persones[i].surname 
+        // }
+        // texto +="</ul>";
 
-        document.getElementById('usuaris').innerHTML = texto;
+        // document.getElementById('usuaris').innerHTML = texto;
+
+        // printar json en pantalla FETCH
+        pintar_persona_API()
 
     }
 
 };
+
+function guardar_persona_en_API(persona) {
+    fetch('http://localhost:3000/usuarios', {
+        method:"POST",
+        body: JSON.stringify(persona),
+        headers: {
+            "content-type": "application/json; charset-UTF-8"
+        }
+    } )
+    .then(response => response.json())
+    .then(json => console.log(json))
+}
+
+function pintar_persona_API() {
+    fetch('http://localhost:3000/usuarios')
+        .then((response) => response.json())
+        .then((persones) =>{
+            let usuaris = document.getElementById('usuaris')
+            usuaris.innerHTML = ' '
+
+            for (let persona of persones) {
+                usuaris.innerHTML += "<divclass='usuari'>" + persona.name + " " + persona.surname + "</div>"
+            }
+        })
+}
 
 // Validar formulari
 // si no valida mostra un error
