@@ -37,14 +37,15 @@
     // conseguir y printar usuarios
     fetch('http://localhost:3000/personas')
         .then((response) => response.json())
-        .then((personas) => console.log(personas))
+        .then((personas) => {
+            personas.forEach(usuario => {
+                document.getElementById("PrintUser").innerHTML = 
+                document.getElementById("PrintUser").innerHTML + usuario.name + usuario.surname
+            });
+        })
 
     
-    personas.forEach(usuario => {
-        document.getElementById("PrintUser").innerHTML =
-        document.getElementById("PrintUser").innerHTML + usuario.name + usuario.surname
-    })
-    
+
 
     
 </script>
