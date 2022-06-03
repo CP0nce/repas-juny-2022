@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>prueba de fetch</h1>
+
+    <form>
+    <div class="box">
+        <label>Name:</label>
+        <input type="text" id="name" />
+    </div>
+
+    <div class="box">
+        <label>Surname:</label>
+        <input type="text" id="surname" />
+      </div>
+    </form>
+    
+    <br>
+    <h2>Usuarios:</h2>
+    <div id="PrintUser"></div>
+    <br>
+    <button id="guardar">Guardar usuario</button>
+
+</body>
+<script>
+    // var usuarios = []
+    document.getElementById("guardar").onclick = function() {api()};
+    function api() { }
+
+
+    // conseguir y printar usuarios
+    fetch('http://localhost:3000/personas')
+        .then((response) => response.json())
+        .then((personas) => console.log(personas))
+
+    
+    personas.forEach(usuario => {
+        document.getElementById("PrintUser").innerHTML =
+        document.getElementById("PrintUser").innerHTML + usuario.name + usuario.surname
+    })
+    
+
+    
+</script>
+</html>
